@@ -22,7 +22,7 @@ module PatternMatcher
       failures
     end
 
-    def example_valid?(example)
+    def self.example_valid?(example)
       Matcher.match_pattern_in_text(@regex, example)
     end
 
