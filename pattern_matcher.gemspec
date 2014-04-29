@@ -9,8 +9,10 @@ Gem::Specification.new do |gem|
   gem.description = "Gem to help manage, test and run common string patterns."
   gem.authors     = ["Adam Parker"]
   gem.email       = 'adam.parker@careerbuilder.com'
-  gem.files       = ["lib/pattern_matcher.rb"]
   gem.homepage    = 'https://rubygems.org/gems/pattern_matcher'
+
+  gem.files        = Dir['{lib}/**/*.rb', 'LICENSE', '*.md']
+  gem.require_path = 'lib'
 
   gem.add_development_dependency "rspec", ">= 2.14.1"
   gem.add_development_dependency "rake", ">= 10.3.1"
