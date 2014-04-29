@@ -23,5 +23,13 @@ module PatternMatcher
     !@configuration.nil?
   end
 
+  def self.proof_patterns
+    pattern_errors = []
+    @patterns.each do |pattern|
+      pattern_errors << pattern.validate_all_examples if pattern.is_valid?
+    end
+    pattern_errors
+  end
+
 end
 

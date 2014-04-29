@@ -2,7 +2,10 @@ module PatternMatcher
   class Matcher
 
     def self.string_to_regex(string)
-      Regexp.new string if is_valid_regex_string?(string)
+      begin
+        Regexp.new string if is_valid_regex_string?(string)
+      rescue
+      end
     end
 
     def self.match_pattern_in_text(pattern, text)

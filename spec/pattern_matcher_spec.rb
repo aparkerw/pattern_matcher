@@ -10,5 +10,10 @@ module PatternMatcher
       }.to raise_error
     end
   end
+  describe "::proof_patterns" do
+    it "the default patterns yaml file should match pattern examples" do
+      PatternMatcher.proof_patterns.should == [[],[]]
+    end
+  end
 
 end

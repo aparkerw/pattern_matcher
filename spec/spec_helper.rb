@@ -27,5 +27,5 @@ def random_number_string(length = 10)
 end
 
 def sample_yaml_pattern()
-  {"name"=>"Social Security Number", "regex"=>"[0-9]{3}-[0-9]{2}-[0-9]{4}", "description"=>"Socials are private."}
+  {"name"=>"Social Security Number", "regex"=>"[0-9]{3}-[0-9]{2}-[0-9]{4}", "description"=>"Socials are private.", "valid_examples"=>["111-22-3333","123-45-6789"]}
 end

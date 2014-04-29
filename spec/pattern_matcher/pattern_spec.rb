@@ -7,7 +7,8 @@ module PatternMatcher
       it "should work given a valid hash" do
         a_pattern = Pattern.new(sample_yaml_pattern)
         a_pattern.name.should == sample_yaml_pattern["name"]
-        a_pattern.regex.should == sample_yaml_pattern["regex"]
+        a_pattern.regex_string.should == sample_yaml_pattern["regex"]
+        a_pattern.regex.should == Matcher.string_to_regex(sample_yaml_pattern["regex"])
         a_pattern.description.should == sample_yaml_pattern["description"]
         a_pattern.is_valid?.should be_true
       end
@@ -25,6 +26,67 @@ module PatternMatcher
       it "should behave correctly given nil" do
         a_pattern = Pattern.new(nil)
         a_pattern.is_valid?.should be_false
+      end
+    end
+
+    describe ".validate_all_examples" do
+      it "should return empty array [] if all tests pass" do
+        pattern = Pattern.new(sample_yaml_pattern)
+        pattern.validate_all_examples.should == []
+      end
+
+      it "should return an array with failures" do
+        pattern = Pattern.new({"name"=>"SSN", "regex"=>"[0-9]{3}-[0-9]{2}-[0-9]{4}", "description"=>"desc", "valid_examples"=>["111-22-4444","aaa"]})
+        pattern.validate_all_examples.should == ['aaa']
+      end
+
+      it "should return an array with failures (multiple)" do
+        pattern = Pattern.new({"name"=>"SSN", "regex"=>"[0-9]{3}-[0-9]{2}-[0-9]{4}", "description"=>"desc", "valid_examples"=>["aaa", "333-22-4444", "333-22-333"]})
+        pattern.validate_all_examples.should == ['aaa', '333-22-333']
+      end
+
+      it "should return an empty array if there are no examples" do
+        pattern = Pattern.new({"name"=>"SSN", "regex"=>"[0-9]{3}-[0-9]{2}-[0-9]{4}", "description"=>"desc"})
+        pattern.validate_all_examples.should == []
+      end
+
+      it "should return an empty array if the examples in the hash is malformed" do
+        #todo: how do we test this?
+        pattern = Pattern.new({"name"=>"SSN", "regex"=>"[0-9]{3}-[0-9]{2}-[0-9]{4}", "description"=>"desc", "valid_examples"=>"this isn't a valid input"})
+        pattern.validate_all_examples.should == []
+      end
+    end
+
+    describe ".example_valid?" do
+
+      before(:each) do
+        
+        @pattern = Pattern.new(sample_yaml_pattern)
+
+      end
+      it "should return false if the regex is invalid" do
+        @pattern.example_valid?('111-22-1111').should be_true
+      end
+
+      it "should return false if the regex is a missmatch" do
+        @pattern.example_valid?('missmatch').should be_false
+      end
+
+      it "should return false if the regex is invalid" do
+        @pattern.example_valid?('missmatch').should be_false
+      end
+
+      it "should return false if the pattern is null" do
+        @pattern.example_valid?(nil).should be_false
+      end
+
+      it "should return false if the pattern is ''" do
+        @pattern.example_valid?('').should be_false
+      end
+
+      it "should return false if the regex is invalid" do
+        @pattern = Pattern.new({"name"=>"SSN", "regex"=>"afsda.+-f/\///\\", "description"=>"desc"})
+        @pattern.example_valid?('111-22-1111').should be_false
       end
     end
 

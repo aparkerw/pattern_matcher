@@ -17,6 +17,11 @@ module PatternMatcher
         returned_regex.should eql(/^[0-9]$/)
         returned_regex.match('6').should be_true
       end
+
+      it "should return nil when regex string is invalid" do
+        returned_regex = Matcher.string_to_regex('afsda.+-f/\///\\')
+        returned_regex.should be_nil
+      end
     end
 
     describe "::match_pattern_in_text" do
