@@ -19,5 +19,9 @@ module PatternMatcher
     @configuration ||= PatternMatcher::Config.new
   end
 
+  def self.configured?
+    !@configuration.nil?
+  end
+
 end
 
