@@ -6,6 +6,7 @@ require 'date'
 require "pattern_matcher/version"
 require "pattern_matcher/config"
 require "pattern_matcher/pattern"
+require "pattern_matcher/match"
 require "pattern_matcher/matcher"
 
 module PatternMatcher
@@ -26,8 +27,8 @@ module PatternMatcher
   def self.match_patterns_to_text(text)
     matches = []
     @patterns.each do |pattern|
-      match = Matcher.match_pattern_in_text(pattern, text)
-      matches << match if match
+      regex_match = Matcher.match_pattern_in_text(pattern, text)
+      matches << Match.new({:name => pattern.name, :match => regex_match}) if regex_match
     end
     matches
   end
