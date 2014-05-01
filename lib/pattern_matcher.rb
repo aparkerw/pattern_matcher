@@ -28,7 +28,7 @@ module PatternMatcher
     matches = []
     @patterns.each do |pattern|
       regex_match = Matcher.match_pattern_in_text(pattern, text)
-      matches << Match.new({:name => pattern.name, :match => regex_match}) if regex_match
+      matches << Match.new({:name => pattern.name, :regex_match => regex_match}) if regex_match
     end
     matches
   end

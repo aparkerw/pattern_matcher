@@ -1,12 +1,12 @@
 module PatternMatcher
   class Match
 
-    attr_accessor :name, :match
+    attr_accessor :name, :regex_match
 
     def initialize(hash)
-      if !hash.nil?
+      if hash.is_a?(Hash)
         @name = hash[:name]
-        @match = hash[:match]
+        @regex_match = hash[:regex_match]
       end
     end
   end
