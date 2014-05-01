@@ -23,6 +23,15 @@ module PatternMatcher
     !@configuration.nil?
   end
 
+  def self.match_patterns_to_text(text)
+    matches = []
+    @patterns.each do |pattern|
+      match = Matcher.match_pattern_in_text(pattern, text)
+      matches << match if match
+    end
+    matches
+  end
+
   def self.proof_patterns
     pattern_errors = []
     @patterns.each do |pattern|

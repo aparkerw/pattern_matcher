@@ -57,7 +57,7 @@ module PatternMatcher
       end
     end
 
-    describe ".example_valid?" do
+    describe ".pattern_example_valid?" do
 
       before(:each) do
         
@@ -65,28 +65,28 @@ module PatternMatcher
 
       end
       it "should return false if the regex is invalid" do
-        @pattern.example_valid?('111-22-1111').should be_true
+        @pattern.pattern_example_valid?('111-22-1111').should be_true
       end
 
       it "should return false if the regex is a missmatch" do
-        @pattern.example_valid?('missmatch').should be_false
+        @pattern.pattern_example_valid?('missmatch').should be_false
       end
 
       it "should return false if the regex is invalid" do
-        @pattern.example_valid?('missmatch').should be_false
+        @pattern.pattern_example_valid?('missmatch').should be_false
       end
 
       it "should return false if the pattern is null" do
-        @pattern.example_valid?(nil).should be_false
+        @pattern.pattern_example_valid?(nil).should be_false
       end
 
       it "should return false if the pattern is ''" do
-        @pattern.example_valid?('').should be_false
+        @pattern.pattern_example_valid?('').should be_false
       end
 
       it "should return false if the regex is invalid" do
         @pattern = Pattern.new({"name"=>"SSN", "regex"=>"afsda.+-f/\///\\", "description"=>"desc"})
-        @pattern.example_valid?('111-22-1111').should be_false
+        @pattern.pattern_example_valid?('111-22-1111').should be_false
       end
     end
 
