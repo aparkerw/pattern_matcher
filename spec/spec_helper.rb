@@ -26,6 +26,11 @@ def random_number_string(length = 10)
   (0...length).map{ ('0'..'9').to_a[rand(10)] }.join
 end
 
-def sample_yaml_pattern()
+def sample_yaml_pattern
   {"name"=>"Social Security Number", "regex"=>"[0-9]{3}-[0-9]{2}-[0-9]{4}", "description"=>"Socials are private.", "valid_examples"=>["111-22-3333","123-45-6789"]}
+end
+
+def sample_match_hash
+  regex_match = /[0-9]{3}-[0-9]{2}-[0-9]{4}/.match("333-22-4444")
+  {:name => "Social Security Number", :regex_match=>regex_match}
 end
