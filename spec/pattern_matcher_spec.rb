@@ -16,4 +16,13 @@ module PatternMatcher
     end
   end
 
+  describe "::match_patterns_to_text" do
+    it "should return [] if there are no matches in the text" do
+      PatternMatcher.match_patterns_to_text("here is a social: 333-22-4444").length.should == 1
+    end
+    it "should return [] if there are no matches in the text" do
+      PatternMatcher.match_patterns_to_text("abc 123 4567").should == []
+    end
+  end
+
 end

@@ -9,7 +9,11 @@ module PatternMatcher
     end
 
     def self.match_pattern_in_text(pattern, text)
-      return pattern.match text if is_valid_pattern?(pattern) && is_valid_text?(text)
+      return match_regex_in_text(pattern.regex, text) if pattern && is_valid_text?(text)
+    end
+
+    def self.match_regex_in_text(regex, text)
+      return regex.match text if is_valid_regex?(regex) && is_valid_text?(text)
     end
 
     def self.initialize_patterns
@@ -23,7 +27,7 @@ module PatternMatcher
       !string.nil? && !string.empty? 
     end
 
-    def self.is_valid_pattern?(pattern)
+    def self.is_valid_regex?(pattern)
       !pattern.nil?
     end
 

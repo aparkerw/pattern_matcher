@@ -17,17 +17,17 @@ module PatternMatcher
     def validate_all_examples
       failures = []
       @valid_examples.each do |example|
-        failures << example if !example_valid? example
+        failures << example if !pattern_example_valid? example
       end
       failures
     end
 
-    def self.example_valid?(example)
-      Matcher.match_pattern_in_text(@regex, example)
-    end
-
     def is_valid?
         return !@regex.nil?
+    end
+
+    def pattern_example_valid?(example)
+      Matcher.match_regex_in_text(@regex, example)
     end
   end
 end
