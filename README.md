@@ -50,58 +50,45 @@ Getting started (code)
     end
 ```
 
+3. Call `match_patterns_to_text` to get a list of `PatternMatcher::Match` objects
+
+```ruby
+	matches = PatternMatcher.match_patterns_to_text(some_text)
+	matches.each do |match|
+		puts match.to_s
+	end
+```
+
 Getting started (command line)
 ---------------
 
-1. download pattern_matcher by calling `gem install pattern_manager`:
+1. download pattern_matcher by calling `gem install pattern_matcher`:
 
 ```ruby
-gem 'simplecov', :require => false, :group => :test
+	gem 'simplecov', :require => false, :group => :test
 ```
 
-2. Load and launch SimpleCov **at the very top** of your `test/test_helper.rb` (*or `spec_helper.rb`, cucumber `env.rb`, or whatever
-   your preferred test framework uses*):
+## Example patterns.yml File
 
-```ruby
-require 'simplecov'
-SimpleCov.start
+The `patterns.yml` file is where patterns can be defined and maintained.  It looks like this:
 
-# Previous content of test helper now starts here
+```
+patterns:
+  SSN:
+    name: Social Security Number
+    regex: '[0-9]{3}-[0-9]{2}-[0-9]{4}'
+    description: Social Security Numbers.
+    valid_examples: ['111-22-1111', '222-11-2222']
+  UserDID:
+    name: Seven Digit Phone Number
+    regex: '[0-9]{3}-[0-9]{4}'
+    description: A seven digit US phone number.
+    valid_examples: ['111-1234', '867-5309']
 ```
 
-**Note:** If SimpleCov starts after your application code is already loaded (via `require`), it won't be able to
-track your files and their coverage! The `SimpleCov.start` **must** be issued **before any of your application code
-is required!**
+**Pattern Key** - Below the patterns node is the Pattern Key.  This must be unique and identifies the pattern described below.
 
-SimpleCov must be running in the process that you want the code coverage analysis to happen on. When testing a server
-process (i.e. a JSON API endpoint) via a separate test process (i.e. when using Selenium) where you want to see all
-code executed by the `rails server`, and not just code executed in your actual test files, you'll want to add something
-like this to the top of `script/rails`:
-
-```ruby
-if ENV['RAILS_ENV'] == 'test'
-  require 'simplecov'
-  SimpleCov.start 'rails'
-  puts "required simplecov"
-end
-```
-
-3. Run your tests, open up `coverage/index.html` in your browser and check out what you've missed so far.
-
-4. Add the following to your `.gitignore` file to ensure that coverage results are not tracked by Git (optional):
-
-    coverage
-
-If you're making a Rails application, SimpleCov comes with a built-in configurations (see below for information on profiles)
-which will get you started with groups for your Controllers, Views, Models and Helpers. To use it, the first two lines of
-your test_helper should be like this:
-
-```ruby
-require 'simplecov'
-SimpleCov.start 'rails'
-```
-
-## Example output
+**Name** - fd fds f ds fds f d fsd sdf f ds
 
 **Coverage results report, fully browsable locally with sorting and much more:**
 
