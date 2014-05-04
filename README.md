@@ -11,13 +11,8 @@ Gem can be found on rubygems at https://rubygems.org/gems/pattern_matcher
 
   * [Source Code]
   * [API documentation]
-  * [Changelog]
-  * [Rubygem]
-  * [Mailing List]
-  * [Continuous Integration]
 
-[Source Code]: https://github.com/colszowka/simplecov "Source Code @ GitHub"
-[API documentation]: http://rubydoc.info/gems/simplecov/frames "RDoc API Documentation at Rubydoc.info"
+[Source Code]: https://github.com/aparker/pattern_matcher "Source Code @ GitHub"
 [leak-stopper]: https://rubygems.org/gems/leak_stopper "LeakStopper"
 
 
@@ -29,13 +24,6 @@ The intention is to provide structured management of system-wide matching string
 ensure that intended behavior is maintained throughout the lifespan of the project.
 
 PatternMatcher is a result of abstracting the core logic for the [leak-stopper] gem and, as a result has some behavior that, while generalized, is intended to assist the functionality that LeakStopper intended to provide.
-
-
-BELOW HERE IS STILL IN THE WORKS
-BELOW HERE IS STILL IN THE WORKS
-BELOW HERE IS STILL IN THE WORKS
-BELOW HERE IS STILL IN THE WORKS
-BELOW HERE IS STILL IN THE WORKS
 
 Getting started (code)
 ---------------
