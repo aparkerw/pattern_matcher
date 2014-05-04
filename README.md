@@ -74,7 +74,8 @@ patterns:
     valid_examples: ['111-1234', '867-5309']
 ```
 
-**Pattern Key** - Below the patterns node is the Pattern Key.  This must be unique and identifies the pattern described below.
+**Pattern Key** - Below the patterns node is the Pattern Key.  This must be unique and identifies the pattern attributes on
+subsiquent nodes.
 
 **name** - The descriptitive title for the type of pattern this is.
 
@@ -85,23 +86,24 @@ used directly to identify matches within analyzed text.
 
 **valid_examples** - A list of known matches that the system can test the regex pattern against to ensure expected behavior.
 
-**Coverage results report, fully browsable locally with sorting and much more:**
-
 
 #### The PatternMatcher::Match object
 
+Think of the PatternMatcher::Match object as an extension of the MatchData class, one that provides a deeper explanation.
 
-Note here
-
+The **Match** object returns the Name of the match along with a copy of the regex match object.
 
 #### Configuration
 
-Note here
+To provide an appropriate level of flexability and ease of use, there are a number of things that can be set as configuration 
+options on ProjectManager.
+
+**patterns_yml** - The source of the patterns that are to be applied to the matcher.
 
 
 #### Debugging Patterns
 
-A core role of PatternMatcher is to help maintain the patterns that are important to you.  This means making them easy to see and understand along with being able to have confidence that they are behaving as expected.
+A core role of PatternMatcher is to help maintain the patterns that are important to you.  This means making them easy to see and understand those patterns along with being able to have confidence that they are behaving as expected.
 
 
 ## List/Report Known Patterns
