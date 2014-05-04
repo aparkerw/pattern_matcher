@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.description = "Gem to help manage, test and run common string patterns."
   gem.authors     = ["Adam Parker"]
   gem.email       = 'adam.parker@careerbuilder.com'
-  gem.homepage    = 'https://rubygems.org/gems/pattern_matcher'
+  gem.homepage    = 'https://github.com/aparkerw/pattern_matcher'
 
   gem.files        = Dir['{lib}/**/*.rb', 'LICENSE', '*.md']
   gem.require_path = 'lib'
