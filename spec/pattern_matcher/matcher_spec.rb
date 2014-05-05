@@ -73,17 +73,5 @@ module PatternMatcher
       end
     end
 
-    describe "::initialize_patterns" do
-      it "should return {} if config is incorrectly initialized (no pattern yaml set)" do
-        PatternMatcher.configure do |config|
-          config.patterns_yml = nil
-        end
-        Matcher.initialize_patterns.should == []
-      end
-      it "should return an array of pattern objects" do
-        Matcher.initialize_patterns.should_not == {}
-      end
-    end
-
   end
 end

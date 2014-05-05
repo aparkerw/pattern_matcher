@@ -8,12 +8,13 @@ require "pattern_matcher/config"
 require "pattern_matcher/pattern"
 require "pattern_matcher/match"
 require "pattern_matcher/matcher"
+require "pattern_matcher/pattern_manager"
 
 module PatternMatcher
 
   def self.configure
     yield configuration if block_given?
-    @patterns = Matcher.initialize_patterns
+    @patterns = PatternManager.initialize_patterns
   end
 
   def self.configuration
@@ -26,7 +27,7 @@ module PatternMatcher
 
   def self.match_patterns_to_text(text)
     matches = []
-    @patterns.each do |pattern|
+    @patterns.to_a.each do |pattern|
       regex_match = Matcher.match_pattern_in_text(pattern, text)
       matches << Match.new({:name => pattern.name, :regex_match => regex_match}) if regex_match
     end
@@ -39,6 +40,10 @@ module PatternMatcher
       pattern_errors << pattern.validate_all_examples if pattern.is_valid?
     end
     pattern_errors
+  end
+
+  def self.patterns
+    @patterns
   end
 
 end

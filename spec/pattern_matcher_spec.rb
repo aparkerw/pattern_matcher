@@ -25,4 +25,11 @@ module PatternMatcher
     end
   end
 
+  describe "::patterns" do
+    it "should return the patterns form the yaml file" do
+      PatternMatcher.patterns.count.should == 2
+      PatternMatcher.patterns.keys.should == ["SSN", "UserDID"]
+    end
+  end
+
 end
