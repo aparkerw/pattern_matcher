@@ -10,7 +10,6 @@ Gem can be found on rubygems at https://rubygems.org/gems/pattern_matcher
 **Code coverage for Ruby 1.9**
 
   * [Source Code]
-  * [API documentation]
 
 [Source Code]: https://github.com/aparker/pattern_matcher "Source Code @ GitHub"
 [leak-stopper]: https://rubygems.org/gems/leak_stopper "LeakStopper"
@@ -87,23 +86,18 @@ used directly to identify matches within analyzed text.
 **valid_examples** - A list of known matches that the system can test the regex pattern against to ensure expected behavior.
 
 
-#### The PatternMatcher::Match object
+## The PatternMatcher::Match object
 
 Think of the PatternMatcher::Match object as an extension of the MatchData class, one that provides a deeper explanation.
 
 The **Match** object returns the Name of the match along with a copy of the regex match object.
 
-#### Configuration
+## Configuration
 
 To provide an appropriate level of flexability and ease of use, there are a number of things that can be set as configuration 
 options on ProjectManager.
 
 **patterns_yml** - The source of the patterns that are to be applied to the matcher.
-
-
-#### Debugging Patterns
-
-A core role of PatternMatcher is to help maintain the patterns that are important to you.  This means making them easy to see and understand those patterns along with being able to have confidence that they are behaving as expected.
 
 
 ## List/Report Known Patterns
@@ -116,3 +110,7 @@ A core role of PatternMatcher is to help maintain the patterns that are importan
 
 
 ## Validate Patterns
+
+#### Debugging Patterns
+
+A core role of PatternMatcher is to help maintain the patterns that are important to you.  This means making them easy to see and understand those patterns along with being able to have confidence that they are behaving as expected.
