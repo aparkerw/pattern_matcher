@@ -21,6 +21,10 @@ module PatternMatcher
       @patterns_hash = pattern_hash
     end
 
+    def add_pattern(pattern)
+      @patterns_hash[pattern.pattern_id] = pattern if pattern.is_valid?
+    end
+
     def keys
       @patterns_hash.keys
     end

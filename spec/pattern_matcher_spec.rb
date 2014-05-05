@@ -12,7 +12,11 @@ module PatternMatcher
   end
   describe "::proof_patterns" do
     it "the default patterns yaml file should match pattern examples" do
-      PatternMatcher.proof_patterns.should == [[],[]]
+      PatternMatcher.proof_patterns.should == {}
+    end
+    it "should show failing patterns" do
+      PatternMatcher.add_pattern_hash({:pattern_id => "SSNFail", "name"=>"SSN", "regex"=>"[0-9]{3}-[0-9]{2}-[0-9]{4}", "description"=>"SSN", "valid_examples"=>["111-22-3333","invalid example"]})
+      PatternMatcher.proof_patterns.should == {"SSNFail" => ["invalid example"]}
     end
   end
 
@@ -29,6 +33,19 @@ module PatternMatcher
     it "should return the patterns form the yaml file" do
       PatternMatcher.patterns.count.should == 2
       PatternMatcher.patterns.keys.should == ["SSN", "UserDID"]
+    end
+  end
+
+  describe "::add_pattern_hash" do
+    it "should add a valid hash" do
+        count_before = PatternMatcher.patterns.count
+        PatternMatcher.add_pattern_hash({:pattern_id => "SSN2", "name"=>"SSN", "regex"=>"[0-9]{3}-[0-9]{2}-[0-9]{4}", "description"=>"SSN", "valid_examples"=>["111-22-3333"]})
+        PatternMatcher.patterns.count.should == count_before + 1
+    end
+    it "should not add a duplicate hash key" do
+        count_before = PatternMatcher.patterns.count
+        PatternMatcher.add_pattern_hash({:pattern_id => "SSN", "name"=>"SSN", "regex"=>"[0-9]{3}-[0-9]{2}-[0-9]{4}", "description"=>"SSN", "valid_examples"=>["111-22-3333"]})
+        PatternMatcher.patterns.count.should == count_before
     end
   end
 

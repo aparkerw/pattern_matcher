@@ -33,8 +33,8 @@ Getting started (code)
 
 ```ruby
 	PatternMatcher.configure do |config|
-      config.patterns_yml = File.join(File.dirname(__FILE__), "config", "patterns.yml")
-    end
+    config.patterns_yml = File.join(File.dirname(__FILE__), "config", "patterns.yml")
+  end
 ```
 
 3. Call `match_patterns_to_text` to get a list of `PatternMatcher::Match` objects
@@ -44,6 +44,13 @@ Getting started (code)
 	matches.each do |match|
 		puts match.to_s
 	end
+```
+
+4. Programatically `add_pattern_hash` to expand the scope of patterns tested
+
+```ruby
+  hash = {:pattern_id => "ANumber", :name => "A Number", :regex => "[0-9]", :description => "Just a single number."}
+  PatternMatcher.add_pattern_hash(hash)
 ```
 
 Getting started (command line)
@@ -66,7 +73,7 @@ patterns:
     regex: '[0-9]{3}-[0-9]{2}-[0-9]{4}'
     description: Social Security Numbers.
     valid_examples: ['111-22-1111', '222-11-2222']
-  UserDID:
+  PhoneNumber:
     name: Seven Digit Phone Number
     regex: '[0-9]{3}-[0-9]{4}'
     description: A seven digit US phone number.
@@ -90,7 +97,7 @@ used directly to identify matches within analyzed text.
 
 Think of the PatternMatcher::Match object as an extension of the MatchData class, one that provides a deeper explanation.
 
-The **Match** object returns the Name of the match along with a copy of the regex match object.
+The **Match** object returns the Name of the match along with a copy of the regex MatchData object.
 
 ## Configuration
 
@@ -102,11 +109,28 @@ options on ProjectManager.
 
 ## List/Report Known Patterns
 
-**.patterns**
+**List Paterns**  - To view an entire list of the pattern keys that PatternMatcher knows about you can
 
-**.to_s**
+```
+  > PatternMatcher.patterns.keys
+  > [SSN, PhoneNumber, ...]
+```
 
-**.to_s a pattern**
+**Detailed List of Patterns**  - looks at each pattern and calls `.to_s` on each pattern
+
+```
+  > PatternMatcher.patterns.to_s
+  > "Social Security Number (true) -- [0-9]{3}-[0-9]{2}-[0-9]{4} -- Social Security Numbers.
+     Seven Digit Phone Number (true) -- [0-9]{3}-[0-9]{4} -- A seven digit US phone number."
+```
+
+**Details of a Single Pattern**  - a richer view into the pattern.
+
+```
+  > a_pattern = Pattern.new({:pattern_id => SSN, "name" => "Social Security Number", "regex" => "[0-9]{3}-[0-9]{2}-[0-9]{4}", "description" => "A Social Security Number."})
+  > a_pattern.to_s
+  > "Social Security Number (true) -- [0-9]{3}-[0-9]{2}-[0-9]{4} -- A Social Security Number"
+```
 
 
 ## Validate Patterns
@@ -114,3 +138,8 @@ options on ProjectManager.
 #### Debugging Patterns
 
 A core role of PatternMatcher is to help maintain the patterns that are important to you.  This means making them easy to see and understand those patterns along with being able to have confidence that they are behaving as expected.
+
+```
+> PatternMatcher.proof_patterns
+> {"EmailAddress" => ["something#mail.com"]}
+```

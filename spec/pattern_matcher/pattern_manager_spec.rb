@@ -27,7 +27,16 @@ module PatternMatcher
       end
     end
 
-    describe "::to_a" do
+    describe ".add_pattern" do
+      it "should return a valid PatternManager object given a valid raw hash" do
+        PatternMatcher.patterns.to_a.count.should == 2
+        PatternMatcher.patterns.to_a.first.is_a?(PatternMatcher::Pattern).should be_true
+      end
+      it "should gracefully handle no patterns" do
+      end
+    end
+
+    describe ".to_a" do
       it "should return an array of the patterns Matcher knows about" do
         PatternMatcher.patterns.to_a.count.should == 2
         PatternMatcher.patterns.to_a.first.is_a?(PatternMatcher::Pattern).should be_true
@@ -42,7 +51,7 @@ module PatternMatcher
       end
     end
 
-    describe "::patterns_to_s" do
+    describe ".patterns_to_s" do
       it "should return a string of the patterns that Matcher knows to apply" do
         PatternMatcher.patterns.to_s.should == patterns_as_string
       end
