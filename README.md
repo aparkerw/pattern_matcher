@@ -33,25 +33,25 @@ Getting started (code)
 2. Initialize Pattern pattern_matcher
 
 ```ruby
-	PatternMatcher.configure do |config|
-    config.patterns_yml = File.join(File.dirname(__FILE__), "config", "patterns.yml")
-  end
+PatternMatcher.configure do |config|
+  config.patterns_yml = File.join(File.dirname(__FILE__), "config", "patterns.yml")
+end
 ```
 
 3. Call `match_patterns_to_text` to get a list of `PatternMatcher::Match` objects
 
 ```ruby
-	matches = PatternMatcher.match_patterns_to_text(some_text)
-	matches.each do |match|
-		puts match.to_s
-	end
+matches = PatternMatcher.match_patterns_to_text(some_text)
+matches.each do |match|
+  puts match.to_s
+end
 ```
 
 4. Programatically `add_pattern_hash` to expand the scope of patterns tested
 
 ```ruby
-  hash = {:pattern_id => "ANumber", :name => "A Number", :regex => "[0-9]", :description => "Just a single number."}
-  PatternMatcher.add_pattern_hash(hash)
+hash = {:pattern_id => "ANumber", :name => "A Number", :regex => "[0-9]", :description => "Just a single number."}
+PatternMatcher.add_pattern_hash(hash)
 ```
 
 Getting started (command line)
@@ -60,7 +60,7 @@ Getting started (command line)
 1. download pattern_matcher by calling `gem install pattern_matcher`:
 
 ```ruby
-	gem 'simplecov', :require => false, :group => :test
+gem 'simplecov', :require => false, :group => :test
 ```
 
 ## Example patterns.yml File
