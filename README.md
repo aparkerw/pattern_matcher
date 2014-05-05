@@ -5,6 +5,7 @@ Gem to help manage, test and run regex pattern matchers for a given project.
 
 Gem can be found on rubygems at https://rubygems.org/gems/pattern_matcher
 
+[![Gem Version](https://badge.fury.io/rb/pattern_matcher.svg)](http://badge.fury.io/rb/pattern_matcher)
 
 =========
 **Code coverage for Ruby 1.9**
