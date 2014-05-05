@@ -60,7 +60,7 @@ Getting started (command line)
 1. download pattern_matcher by calling `gem install pattern_matcher`:
 
 ```ruby
-gem 'simplecov', :require => false, :group => :test
+# not yet implemented
 ```
 
 ## Example patterns.yml File
