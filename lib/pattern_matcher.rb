@@ -35,15 +35,21 @@ module PatternMatcher
   end
 
   def self.proof_patterns
-    pattern_errors = []
+    pattern_errors = {}
     @patterns.each do |pattern|
-      pattern_errors << pattern.validate_all_examples if pattern.is_valid?
+      failures = pattern.validate_all_examples
+      pattern_errors[pattern.pattern_id] = failures if (pattern.is_valid? && failures.count > 0)
     end
     pattern_errors
   end
 
   def self.patterns
     @patterns
+  end
+
+  def self.add_pattern_hash(hash)
+    pattern = Pattern.new(hash)
+    @patterns.add_pattern pattern if pattern.is_valid?
   end
 
 end
